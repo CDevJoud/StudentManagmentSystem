@@ -1,0 +1,60 @@
+{
+	"Users": [
+		{
+			"Username": "admin",
+			"Password": "123456",
+			"Email": "admin@lol.com",
+			"LoggedIn": false,
+			"Session": 2025,
+			"LastLoggedIn": {
+				"Second": 30,
+				"Minute": 45,
+				"Hour": 4,
+				"Day": [ "Monday", 24 ],
+				"Week": 45,
+				"Month": 1,
+				"Year": 2025
+			},
+			"Privilege": {
+				"name": "admin",
+				"tier": 5
+			}
+		},
+		{
+			"Username": "Joud",
+			"Password": "Kjkszpjj1",
+			"Email": "admin@lol.com",
+			"LoggedIn": false,
+			"Session": 2005,
+			"LastLoggedIn": {
+				"Second": 30,
+				"Minute": 45,
+				"Hour": 4,
+				"Day": [ "Monday", 24 ],
+				"Week": 45,
+				"Month": 1,
+				"Year": 2025
+			},
+			"Privilege": {
+				"name": "admin",
+				"tier": 5
+			}
+		}
+	],
+	"Table": [
+		{
+			"id": "1",
+			"name": "John Doe",
+			"age": "16",
+			"class": "10",
+			"swedish": "A"
+		},
+		{
+			"id": "2",
+			"name": "Jane Smith",
+			"age": "15",
+			"class": "9",
+			"swedish": "B"
+		}
+	]
+}

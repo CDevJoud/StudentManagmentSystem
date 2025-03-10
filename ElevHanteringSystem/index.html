@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<title>Admin Login</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+	<style>
+		body {
+			background-color: #212529;
+			/*background-color: #f8f9fa;*/
+			display: flex;
+			justify-content: center; /* Centers horizontally */
+			align-items: center; /* Centers vertically */
+			height: 100vh;
+		}
+		h3, label {
+			color: white;
+		}
+
+		.login-card{
+			max-width:400px;
+			width:100%;
+		}
+	</style>
+</head>
+<body>
+	<div ckass="card login-card shadow p-4">
+		<div class="card-body">
+			<h3 class="text-center mb-4">Admin Login</h3>
+			<form id="loginForm">
+				<div class="mb-3">
+					<label class="form-label">Username</label>
+					<div class="input-group">
+						<span class="input-group-text"><i class="bi bi-person"></i></span>
+						<input type="text" id="username" class="form-control" placeholder="Enter Username" required />
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label">Password</label>
+					<div class="input-group">
+						<span class="input-group-text"><i class="bi bi-lock"></i></span>
+						<input type="password" class="form-control" id="password" placeholder="Enter Password" required />
+					</div>
+				</div>
+				<div>
+					<button type="submit" class="btn btn-primary">Login</button>
+				</div>
+
+
+			</form>
+			<div id="errMsg" class="alert alert-danger mt-3 d-none">Invalid username or password</div>
+		</div>
+	</div>
+
+	<script>
+		document.getElementById("loginForm").addEventListener("submit", async function (event) {
+			event.preventDefault();
+
+			const username = document.getElementById("username").value;
+			const password = document.getElementById("password").value;
+
+			const response = await fetch("http://{{WebServer.Proxy.Ip}}:{{WebServer.Proxy.Port}}/login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({ username, password })
+			});
+
+			const result = await response.json();
+
+			if (result.success) {
+				//alert("Login successful");
+				window.location.href = "dashboard";
+			} else {
+				document.getElementById("errMsg").classList.remove("d-none");
+			}
+		});
+	</script>
+</body>
+</html>

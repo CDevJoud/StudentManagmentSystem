@@ -1,0 +1,15 @@
+{
+	"WebServer": {
+		"Proxy": {
+			"Enabled": true,
+			"Ip": "147.185.221.18",
+			"Port": 15770
+		},
+		"Ip": "192.168.50.44",
+		"Port": 8080,
+		"Routing": {
+			"/": "index.html",
+			"dashboard": "dashboard.html"
+		}
+	}
+}

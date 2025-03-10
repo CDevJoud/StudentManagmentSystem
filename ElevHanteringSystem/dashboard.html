@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dashboard - Student Management</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+		}
+
+		.sidebar {
+			height: 100vh;
+			width: 250px;
+			position: fixed;
+			background-color: #343a40;
+			padding-top: 20px;
+		}
+
+			.sidebar a {
+				padding: 10px 20px;
+				display: block;
+				color: white;
+				text-decoration: none;
+			}
+
+				.sidebar a:hover {
+					background-color: #495057;
+				}
+
+		.content {
+			margin-left: 260px;
+			padding: 20px;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		th, td {
+			border: 1px solid black;
+			padding: 8px;
+			text-align: center;
+		}
+
+		th {
+			background-color: #f2f2f2;
+		}
+
+		/*.edit-btn, .delete-btn {
+			cursor: pointer;
+			color: white;
+			border: none;
+			padding: 5px 10px;
+		}
+
+		.edit-btn {
+			background-color: blue;
+		}
+
+		.delete-btn {
+			background-color: red;
+		}*/
+
+		/* Highlight row when clicked */
+		.selected {
+			background-color: #d1ecf1;
+		}
+	</style>
+</head>
+<body>
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<h4 class="text-center text-white">Dashboard</h4>
+		<a href="#">Home</a>
+		<a href="#">Analytics</a>
+		<a href="#">Settings</a>
+		<a href="#" class="logout-btn btn btn-danger" onclick="logout()">Logout</a>
+	</div>
+
+	<!-- Main Content -->
+	<div class="content">
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-4">
+			<div class="container-fluid">
+				<span class="navbar-brand">Welcome, {{ Username }}</span>
+				<div class="ms-auto">
+					<button class="btn btn-outline-primary">Profile</button>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Dashboard Cards -->
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card shadow-sm">
+					<div class="card-body">
+						<h5 class="card-title">Sales</h5>
+						<p class="card-text fs-3 fw-bold">$12,345</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card shadow-sm">
+					<div class="card-body">
+						<h5 class="card-title">Users</h5>
+						<p class="card-text fs-3 fw-bold">1,234</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card shadow-sm">
+					<div class="card-body">
+						<h5 class="card-title">Orders</h5>
+						<p class="card-text fs-3 fw-bold">567</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Student Table -->
+		<h2>Student Management</h2>
+		<table id="studentTable">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Class</th>
+					<th>Swedish</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>John Doe</td>
+					<td>16</td>
+					<td>10</td>
+					<td>A</td>
+					<td>
+						<button class="btn btn-primary" onclick="editRow(this)">Edit Row</button>
+						<button class="btn btn-danger" onclick="deleteRow(this)">Delete</button>
+					</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Jane Smith</td>
+					<td>15</td>
+					<td>9</td>
+					<td>B</td>
+					<td>
+						<button class="btn btn-primary" onclick="editRow(this)">Edit Row</button>
+						<button class="btn btn-danger" onclick="deleteRow(this)">Delete</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br />
+		<button onclick="addStudent()" class="btn btn-primary">Add Student</button>
+		<button onclick="saveTableData()" class="btn btn-success">Save</button>
+	</div>
+
+	<script>
+		function logout() {
+			if (confirm("Are you sure you want to log out?")) {
+				fetch('http://{{WebServer.Proxy.Ip}}:{{WebServer.Proxy.Port}}/logout', {
+					method: 'POST',
+					credentials: 'include',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ logout: true })
+				})
+					.then(response => response.json())
+					.then(result => {
+						if (result.ok) {
+							localStorage.clear();
+							sessionStorage.clear();
+							window.location.href = "/";
+						} else {
+							alert("Logout failed. Please try again.");
+						}
+					})
+					.catch(error => {
+						console.error("Error logging out:", error);
+						alert("An error occurred. Please try again.");
+					});
+			}
+		}
+
+		// Add student
+		function addStudent() {
+			let table = document.getElementById("studentTable").getElementsByTagName("tbody")[0];
+			let newRow = table.insertRow();
+
+			let idCell = newRow.insertCell(0);
+			let nameCell = newRow.insertCell(1);
+			let ageCell = newRow.insertCell(2);
+			let classCell = newRow.insertCell(3);
+			let swedishCell = newRow.insertCell(4);
+			let actionCell = newRow.insertCell(5);
+
+
+			idCell.innerHTML = table.rows.length;
+			nameCell.innerHTML = prompt("Enter Name:");
+			ageCell.innerHTML = prompt("Enter Age:");
+			classCell.innerHTML = prompt("Enter Class:");
+			swedishCell.innerHTML = prompt("Enter Swedish Grade:");
+
+			actionCell.innerHTML = `
+						<button class="btn btn-primary" onclick="editRow(this)">Edit Row</button>
+						<button class="btn btn-danger" onclick="deleteRow(this)">Delete</button>
+					`;
+
+			// Reapply event listeners for the newly added row
+			applyEditListeners();
+		}
+
+		// Edit entire row
+		function editRow(btn) {
+			let row = btn.parentElement.parentElement;
+
+			// Allow editing of each cell in the row
+			for (let i = 1; i < row.cells.length - 1; i++) {  // Skip the action cell
+				let newValue = prompt(`Edit ${row.cells[i].innerHTML}`, row.cells[i].innerHTML);
+				if (newValue !== null) {
+					row.cells[i].innerHTML = newValue;
+				}
+			}
+		}
+
+		// Edit individual column when clicked
+		function applyEditListeners() {
+			document.querySelectorAll('td').forEach(td => {
+				td.addEventListener('click', function () {
+					if (this.cellIndex !== 5) { // Exclude action column
+						let newValue = prompt(`Edit ${this.innerHTML}`, this.innerHTML);
+						if (newValue !== null) {
+							this.innerHTML = newValue;
+						}
+					}
+				});
+			});
+		}
+
+		// Initialize listeners when the page loads
+		applyEditListeners();
+
+		// Delete row
+		function deleteRow(btn) {
+			if (confirm("Are you sure you want to delete this student?")) {
+				let row = btn.parentElement.parentElement;
+				row.parentElement.removeChild(row);
+			}
+		}
+
+		function saveTableData() {
+			let table = document.getElementById("studentTable");
+			let data = [];
+
+			// Loop through table rows (excluding the header)
+			for (let i = 1; i < table.rows.length; i++) {
+				let row = table.rows[i];
+				let student = {
+					id: row.cells[0].innerText,
+					name: row.cells[1].innerText,
+					age: row.cells[2].innerText,
+					class: row.cells[3].innerText,
+					swedish: row.cells[4].innerText
+				};
+				data.push(student);
+			}
+
+			// Send data to the server
+			fetch('http://{{WebServer.Proxy.Ip}}:{{WebServer.Proxy.Port}}/save', { // Replace with your API URL
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			})
+				.then(response => response.json())
+				.then(result => {
+					if (result.success) {
+						alert("Data saved successfully!");
+					} else {
+						alert("Error saving data.");
+					}
+				})
+				.catch(error => {
+					console.error("Error:", error);
+					alert("An error occurred while saving data.");
+				});
+		}
+	</script>
+
+</body>
+</html>
