@@ -87,7 +87,7 @@
 		<!-- Navbar -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-4">
 			<div class="container-fluid">
-				<span class="navbar-brand">Welcome, {{ Username }}</span>
+                <span class="navbar-brand">Welcome, {{ capitalize(Username) }}</span>
 				<div class="ms-auto">
 					<button class="btn btn-outline-primary">Profile</button>
 				</div>
@@ -95,7 +95,7 @@
 		</nav>
 
 		<!-- Dashboard Cards -->
-		<div class="row">
+		<!--<div class="row">
 			<div class="col-md-4">
 				<div class="card shadow-sm">
 					<div class="card-body">
@@ -120,7 +120,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>-->
 
 		<!-- Student Table -->
 		<h2>Student Management</h2>
@@ -132,33 +132,32 @@
 					<th>Age</th>
 					<th>Class</th>
 					<th>Swedish</th>
+					<th>Math</th>
+					<th>English</th>
+					<th>History</th>
+					<th>Religion</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>John Doe</td>
-					<td>16</td>
-					<td>10</td>
-					<td>A</td>
-					<td>
-						<button class="btn btn-primary" onclick="editRow(this)">Edit Row</button>
-						<button class="btn btn-danger" onclick="deleteRow(this)">Delete</button>
-					</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Jane Smith</td>
-					<td>15</td>
-					<td>9</td>
-					<td>B</td>
-					<td>
-						<button class="btn btn-primary" onclick="editRow(this)">Edit Row</button>
-						<button class="btn btn-danger" onclick="deleteRow(this)">Delete</button>
-					</td>
-				</tr>
-			</tbody>
+            <tbody>
+                {% for student in Table %}
+                <tr>
+                    <td>{{ student.ID }}</td>
+                    <td>{{ student.Name }}</td>
+                    <td>{{ student.Age }}</td>
+                    <td>{{ student.Class }}</td>
+                    <td>{{ upper(student.Swedish) }}</td>
+                    <td>{{ upper(student.Math) }}</td>
+                    <td>{{ upper(student.English) }}</td>
+                    <td>{{ upper(student.History) }}</td>
+                    <td>{{ upper(student.Religion) }}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="editRow(this)">Edit Row</button>
+                        <button class="btn btn-danger" onclick="deleteRow(this)">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
 		</table>
 
 		<br />
@@ -204,14 +203,22 @@
 			let ageCell = newRow.insertCell(2);
 			let classCell = newRow.insertCell(3);
 			let swedishCell = newRow.insertCell(4);
-			let actionCell = newRow.insertCell(5);
+			let mathCell = newRow.insertCell(5);
+			let englishCell = newRow.insertCell(6);
+			let historyCell = newRow.insertCell(7);
+			let religionCell = newRow.insertCell(8);
+			let actionCell = newRow.insertCell(9);
 
 
 			idCell.innerHTML = table.rows.length;
 			nameCell.innerHTML = prompt("Enter Name:");
 			ageCell.innerHTML = prompt("Enter Age:");
 			classCell.innerHTML = prompt("Enter Class:");
-			swedishCell.innerHTML = prompt("Enter Swedish Grade:");
+            swedishCell.innerHTML = prompt("Enter Swedish Grade:");
+            mathCell.innerHTML = prompt("Enter Math Grade:");
+            englishCell.innerHTML = prompt("Enter English Grade:");
+            historyCell.innerHTML = prompt("Enter History Grade:");
+            religionCell.innerHTML = prompt("Enter Religion Grade:");
 
 			actionCell.innerHTML = `
 						<button class="btn btn-primary" onclick="editRow(this)">Edit Row</button>
@@ -239,7 +246,7 @@
 		function applyEditListeners() {
 			document.querySelectorAll('td').forEach(td => {
 				td.addEventListener('click', function () {
-					if (this.cellIndex !== 5) { // Exclude action column
+					if (this.cellIndex !== 9) { // Exclude action column
 						let newValue = prompt(`Edit ${this.innerHTML}`, this.innerHTML);
 						if (newValue !== null) {
 							this.innerHTML = newValue;
@@ -268,11 +275,15 @@
 			for (let i = 1; i < table.rows.length; i++) {
 				let row = table.rows[i];
 				let student = {
-					id: row.cells[0].innerText,
-					name: row.cells[1].innerText,
-					age: row.cells[2].innerText,
-					class: row.cells[3].innerText,
-					swedish: row.cells[4].innerText
+					ID: row.cells[0].innerText,
+					Name: row.cells[1].innerText,
+					Age: row.cells[2].innerText,
+					Class: row.cells[3].innerText,
+                    Swedish: row.cells[4].innerText,
+                    Math: row.cells[5].innerText,
+                    English: row.cells[6].innerText,
+                    History: row.cells[7].innerText,
+                    Religion: row.cells[8].innerText,
 				};
 				data.push(student);
 			}

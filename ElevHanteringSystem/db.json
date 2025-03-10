@@ -1,60 +1,185 @@
 {
-	"Users": [
-		{
-			"Username": "admin",
-			"Password": "123456",
-			"Email": "admin@lol.com",
-			"LoggedIn": false,
-			"Session": 2025,
-			"LastLoggedIn": {
-				"Second": 30,
-				"Minute": 45,
-				"Hour": 4,
-				"Day": [ "Monday", 24 ],
-				"Week": 45,
-				"Month": 1,
-				"Year": 2025
-			},
-			"Privilege": {
-				"name": "admin",
-				"tier": 5
-			}
-		},
-		{
-			"Username": "Joud",
-			"Password": "Kjkszpjj1",
-			"Email": "admin@lol.com",
-			"LoggedIn": false,
-			"Session": 2005,
-			"LastLoggedIn": {
-				"Second": 30,
-				"Minute": 45,
-				"Hour": 4,
-				"Day": [ "Monday", 24 ],
-				"Week": 45,
-				"Month": 1,
-				"Year": 2025
-			},
-			"Privilege": {
-				"name": "admin",
-				"tier": 5
-			}
-		}
-	],
-	"Table": [
-		{
-			"id": "1",
-			"name": "John Doe",
-			"age": "16",
-			"class": "10",
-			"swedish": "A"
-		},
-		{
-			"id": "2",
-			"name": "Jane Smith",
-			"age": "15",
-			"class": "9",
-			"swedish": "B"
-		}
-	]
+  "Users": [
+    {
+      "Email": "admin@lol.com",
+      "LastLoggedIn": {
+        "Day": [
+          "Monday",
+          24
+        ],
+        "Hour": 4,
+        "Minute": 45,
+        "Month": 1,
+        "Second": 30,
+        "Week": 45,
+        "Year": 2025
+      },
+      "LoggedIn": false,
+      "Password": "12345",
+      "Privilege": {
+        "name": "admin",
+        "tier": 5
+      },
+      "Session": 2025,
+      "Table": [],
+      "Username": "admin"
+    },
+    {
+      "Email": "admin@lol.com",
+      "LastLoggedIn": {
+        "Day": [
+          "Monday",
+          24
+        ],
+        "Hour": 4,
+        "Minute": 45,
+        "Month": 1,
+        "Second": 30,
+        "Week": 45,
+        "Year": 2025
+      },
+      "LoggedIn": true,
+      "Password": "1234",
+      "Privilege": {
+        "name": "admin",
+        "tier": 5
+      },
+      "Session": 2005,
+      "Table": [
+        {
+          "Age": "19",
+          "Class": "TE22I",
+          "English": "A",
+          "History": "A",
+          "ID": "0",
+          "Math": "A",
+          "Name": "Joud Kandeel",
+          "Religion": "A",
+          "Swedish": "A"
+        },
+        {
+          "Age": "19",
+          "Class": "TE22I",
+          "English": "A",
+          "History": "A",
+          "ID": "1",
+          "Math": "A",
+          "Name": "Fernando",
+          "Religion": "A",
+          "Swedish": "A"
+        },
+        {
+          "Age": "19",
+          "Class": "TE22I",
+          "English": "A",
+          "History": "A",
+          "ID": "2",
+          "Math": "A",
+          "Name": "Precious",
+          "Religion": "A",
+          "Swedish": "A"
+        },
+        {
+          "Age": "19",
+          "Class": "TE22I",
+          "English": "A",
+          "History": "b",
+          "ID": "3",
+          "Math": "A",
+          "Name": "Hani",
+          "Religion": "A",
+          "Swedish": "A"
+        },
+        {
+          "Age": "19",
+          "Class": "TE22I",
+          "English": "A",
+          "History": "A",
+          "ID": "4",
+          "Math": "A",
+          "Name": "Abdullah",
+          "Religion": "A",
+          "Swedish": "A"
+        },
+        {
+          "Age": "19",
+          "Class": "TE22I",
+          "English": "A",
+          "History": "A",
+          "ID": "5",
+          "Math": "A",
+          "Name": "Amer",
+          "Religion": "A",
+          "Swedish": "A"
+        },
+        {
+          "Age": "19",
+          "Class": "TE22I",
+          "English": "F",
+          "History": "F",
+          "ID": "6",
+          "Math": "F",
+          "Name": "Helin",
+          "Religion": "F",
+          "Swedish": "F"
+        },
+        {
+          "Age": "19",
+          "Class": "TE22I",
+          "English": "A",
+          "History": "A",
+          "ID": "7",
+          "Math": "A",
+          "Name": "Rasha",
+          "Religion": "A",
+          "Swedish": "A"
+        },
+        {
+          "Age": "19",
+          "Class": "TE22I",
+          "English": "A",
+          "History": "A",
+          "ID": "8",
+          "Math": "A",
+          "Name": "Hazzy",
+          "Religion": "A",
+          "Swedish": "A"
+        },
+        {
+          "Age": "19",
+          "Class": "TE22I",
+          "English": "A",
+          "History": "A",
+          "ID": "9",
+          "Math": "A",
+          "Name": "lol",
+          "Religion": "A",
+          "Swedish": "A"
+        },
+        {
+          "Age": "19",
+          "Class": "TE22I",
+          "English": "A",
+          "History": "A",
+          "ID": "10",
+          "Math": "A",
+          "Name": "Leen",
+          "Religion": "A",
+          "Swedish": "A"
+        },
+        {
+          "Age": "19",
+          "Class": "TE22I",
+          "English": "A",
+          "History": "A",
+          "ID": "11",
+          "Math": "A",
+          "Name": "Hala",
+          "Religion": "A",
+          "Swedish": "A"
+        }
+      ],
+      "Username": "Joud"
+    }
+  ]
 }

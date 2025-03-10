@@ -177,7 +177,10 @@ void WebServer::HandleGetDashboard(Http& req, Client* client) {
 			nlohmann::json updatedTemplateData = user;
 			updatedTemplateData["WebServer"]["Proxy"]["Ip"] = g.config["WebServer"]["Proxy"]["Ip"];
 			updatedTemplateData["WebServer"]["Proxy"]["Port"] = g.config["WebServer"]["Proxy"]["Port"];
-			res.SetBody(env.render(page, updatedTemplateData));
+
+
+			auto htmlPage = env.render(page, updatedTemplateData);
+			res.SetBody(htmlPage);
 			res.SendResponse(client->socket);
 		}
 	} else {
@@ -306,6 +309,21 @@ void WebServer::HandlePostSave(Http& req, Client* client) {
 		if (!bd.empty() && bd[0] != 0) {
 			try {
 				nlohmann::json data = nlohmann::json::parse(bd);
+
+				auto session = req.GetField("Cookie");
+				auto sessionID = std::stoi(session.substr(session.find_first_of('=') + 1));
+				auto& user = *GetUserSessionFromDB(sessionID);
+
+				user["Table"] = data;
+
+				Http res;
+				res.SetResponseCode(200, "OK!");
+				res.SetField("Content-Type", "application/json");
+				res.SetVersion("HTTP/1.1");
+				nlohmann::json jRes;
+				jRes["success"] = true;
+				res.SetBody(jRes.dump());
+				res.SendResponse(client->socket);
 			}
 			catch (const nlohmann::json::parse_error& e) {
 				std::cerr << "JSON Parse Error: " << e.what() << std::endl;
