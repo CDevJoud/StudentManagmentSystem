@@ -21,8 +21,44 @@
         "tier": 5
       },
       "Session": 2025,
-      "Table": [],
+      "Table": [
+        {
+          "Age": "19",
+          "Class": "Te22I",
+          "English": "a",
+          "History": "a",
+          "ID": "1",
+          "Math": "a",
+          "Name": "Joud",
+          "Religion": "b",
+          "Swedish": "A"
+        }
+      ],
       "Username": "admin"
+    },
+    {
+      "Email": "admin@lol.com",
+      "LastLoggedIn": {
+        "Day": [
+          "Monday",
+          24
+        ],
+        "Hour": 4,
+        "Minute": 45,
+        "Month": 1,
+        "Second": 30,
+        "Week": 45,
+        "Year": 2025
+      },
+      "LoggedIn": false,
+      "Password": "IHateBea",
+      "Privilege": {
+        "name": "admin",
+        "tier": 5
+      },
+      "Session": 2026,
+      "Table": [],
+      "Username": "Hazzy"
     },
     {
       "Email": "admin@lol.com",
@@ -83,7 +119,7 @@
           "Age": "19",
           "Class": "TE22I",
           "English": "A",
-          "History": "b",
+          "History": "B",
           "ID": "3",
           "Math": "A",
           "Name": "Hani",
@@ -113,15 +149,15 @@
           "Swedish": "A"
         },
         {
-          "Age": "19",
+          "Age": "12",
           "Class": "TE22I",
-          "English": "F",
-          "History": "F",
+          "English": "A+",
+          "History": "F-",
           "ID": "6",
-          "Math": "F",
+          "Math": "F-",
           "Name": "Helin",
-          "Religion": "F",
-          "Swedish": "F"
+          "Religion": "F-",
+          "Swedish": "F-"
         },
         {
           "Age": "19",
@@ -152,17 +188,6 @@
           "History": "A",
           "ID": "9",
           "Math": "A",
-          "Name": "lol",
-          "Religion": "A",
-          "Swedish": "A"
-        },
-        {
-          "Age": "19",
-          "Class": "TE22I",
-          "English": "A",
-          "History": "A",
-          "ID": "10",
-          "Math": "A",
           "Name": "Leen",
           "Religion": "A",
           "Swedish": "A"
@@ -172,7 +197,7 @@
           "Class": "TE22I",
           "English": "A",
           "History": "A",
-          "ID": "11",
+          "ID": "10",
           "Math": "A",
           "Name": "Hala",
           "Religion": "A",

@@ -1,11 +1,11 @@
 {
   "WebServer": {
-    "Ip": "127.0.0.1",
+    "Ip": "192.168.50.44",
     "Port": 8080,
     "Proxy": {
       "Enabled": false,
-      "Ip": "127.0.0.1",
-      "Port": 8080
+      "Ip": "147.185.221.18",
+      "Port": 15770
     },
     "Routing": {
       "/": "index.html",

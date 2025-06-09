@@ -56,5 +56,7 @@
     <None Include="db.json" />
     <None Include="404.html" />
     <None Include="unauth.html" />
+    <None Include="initdb.sql" />
+    <None Include="sampleinsert.sql" />
   </ItemGroup>
 </Project>

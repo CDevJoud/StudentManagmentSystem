@@ -14,7 +14,7 @@ static void SaveToFile(const std::string& fName, const std::string& data) {
 }
 
 static std::string LoadFile(const std::string& fName) {
-	HANDLE hFile = CreateFileA(fName.c_str(), GENERIC_ALL, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+	HANDLE hFile = CreateFileA(fName.c_str(), GENERIC_ALL, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
 	DWORD w = 0;
 	LARGE_INTEGER size;
 	GetFileSizeEx(hFile, &size);
@@ -79,8 +79,12 @@ void Application::run() {
 		if (cmd == "stop") {
 			SaveToFile("config.json", g.config.dump(2, ' '));
 			SaveToFile("db.json", g.db.dump(2, ' '));
-			this->m_thread->terminate();
+			
 			this->m_ws->Terminate();
+			
+			this->m_thread->terminate();
+			
+			
 		} else if (cmd == "update --config") {
 			g.config = nlohmann::json::parse(LoadFile("config.json"));
 			std::cout << "Config File Updated!" << std::endl;

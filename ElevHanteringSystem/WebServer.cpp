@@ -1,10 +1,33 @@
 #include "WebServer.hpp"
+#include <SFML/System/Sleep.hpp>
 
 #include <iostream>
 #include <functional>
 #include "SharedData.hpp"
 #include <SFML/System/FileInputStream.hpp>
 #include "inja.hpp"
+
+/*nlohmann::json GetUserByUsername(sqlite3* db, const std::string& name) {
+    sqlite3_stmt* stmt;
+    nlohmann::json userJson;
+
+    const char* query = "SELECT * FROM Users WHERE Username = ?;";
+    if (sqlite3_prepare_v2(db, query, -1, &stmt, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(stmt, 1, name.c_str(), -1, SQLITE_STATIC);
+
+        if (sqlite3_step(stmt) == SQLITE_ROW) {
+            userJson["UserID"] = sqlite3_column_int(stmt, 0);
+            userJson["Username"] = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+            userJson["Email"] = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+            userJson["Password"] = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+            userJson["LoggedIn"] = sqlite3_column_int(stmt, 4);
+            userJson["Session"] = sqlite3_column_int(stmt, 5);
+        }
+    }
+
+    sqlite3_finalize(stmt);
+    return userJson;
+}*/
 
 static nlohmann::json* GetUsernameFromDB(const std::string& name) {
 	if (g.db["Users"].is_array()) {
